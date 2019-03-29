@@ -30,3 +30,12 @@ directory '/mnt/myusb'
 ```
 
 
+
+
+# References
+
+- Basics on chef-solo
+http://www.opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/
+
+- 
+
