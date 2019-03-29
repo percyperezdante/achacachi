@@ -1,0 +1,36 @@
+# This Vagrant file is to provide a basic infrastructure 
+#
+#  Run to update the name of the new host
+#
+#      sed -i 's/chef/poker/g' Vagrantfile
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box =  "ubuntu/trusty64"
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  # ./shared is used to share files including  keys
+  #  apt-get wont work if you share /tmp ONLY, it requires
+  #  to share /tmp/SOME_DIRECTORY
+  config.vm.synced_folder "/data/boxes/shared", "/tmp/shared", create: true
+
+  config.vm.provision "shell", :path => "install_common.sh", :name => "Installing common tools to all VMs"
+
+  # -----------------------------------------
+  # Provisioning POKER environment:
+  # -----------------------------------------
+  config.vm.define :chef do |chef|
+    chef.vm.network "private_network", ip: "192.168.10.10"
+    chef.vm.hostname = "chef"
+    #chef.vm.provision "shell", :path => "install_dev_env.sh", :name => "Install the development environment + jenkins + gradle for java"
+  end
+
+end

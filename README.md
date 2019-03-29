@@ -37,5 +37,12 @@ directory '/mnt/myusb'
 - Basics on chef-solo
 http://www.opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/
 
-- 
+- Chef-solo tutorial
+https://www.tutorialspoint.com/chef/chef_solo_setup.htm
 
+
+- Resources
+https://docs.chef.io/resource.html
+
+- Supermarket
+https://supermarket.chef.io
